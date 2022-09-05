@@ -1,0 +1,112 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNmiCBiqCbhnlJt2QYWQAoj",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/JHL5495/CP1/blob/main/Crawling\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "id": "gQHyph6DZTDA"
+      },
+      "outputs": [],
+      "source": [
+        "# chrome_driver = '../chromedriver.exe' # 파일 확장자 이름 표기\n",
+        "chrome_driver = '../chromedriver' # 파일 확장자 이름 미표기"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "URL = 'https://play.google.com/store/apps/details?id=com.evidnet.medi_pangpang'"
+      ],
+      "metadata": {
+        "id": "f9BwGIbJZV6w"
+      },
+      "execution_count": 3,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import requests\n",
+        "from selenium import webdriver\n",
+        "from selenium.webdriver.common.keys import Keys\n",
+        "from selenium.webdriver.support.ui import WebDriverWait\n",
+        "from selenium.webdriver.support import expected_conditions as EC\n",
+        "from selenium.webdriver.common.by import By\n",
+        "from selenium.webdriver.common.keys import Keys\n",
+        "from bs4 import BeautifulSoup\n",
+        "import time\n",
+        "from time import sleep\n",
+        "import random\n",
+        "import pandas as pd"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 394
+        },
+        "id": "dboz1l8nZoAc",
+        "outputId": "76bba4e6-3c99-4c1b-ef5b-7f7ce6d56ad0"
+      },
+      "execution_count": 6,
+      "outputs": [
+        {
+          "output_type": "error",
+          "ename": "ModuleNotFoundError",
+          "evalue": "ignored",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mModuleNotFoundError\u001b[0m                       Traceback (most recent call last)",
+            "\u001b[0;32m<ipython-input-6-a1da2ec6f426>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m\u001b[0m\n\u001b[1;32m      1\u001b[0m \u001b[0;32mimport\u001b[0m \u001b[0mrequests\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 2\u001b[0;31m \u001b[0;32mfrom\u001b[0m \u001b[0mselenium\u001b[0m \u001b[0;32mimport\u001b[0m \u001b[0mwebdriver\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      3\u001b[0m \u001b[0;32mfrom\u001b[0m \u001b[0mselenium\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mwebdriver\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mcommon\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mkeys\u001b[0m \u001b[0;32mimport\u001b[0m \u001b[0mKeys\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      4\u001b[0m \u001b[0;32mfrom\u001b[0m \u001b[0mselenium\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mwebdriver\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msupport\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mui\u001b[0m \u001b[0;32mimport\u001b[0m \u001b[0mWebDriverWait\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      5\u001b[0m \u001b[0;32mfrom\u001b[0m \u001b[0mselenium\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mwebdriver\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msupport\u001b[0m \u001b[0;32mimport\u001b[0m \u001b[0mexpected_conditions\u001b[0m \u001b[0;32mas\u001b[0m \u001b[0mEC\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;31mModuleNotFoundError\u001b[0m: No module named 'selenium'",
+            "",
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0;32m\nNOTE: If your import is failing due to a missing package, you can\nmanually install dependencies using either !pip or !apt.\n\nTo view examples of installing some common dependencies, click the\n\"Open Examples\" button below.\n\u001b[0;31m---------------------------------------------------------------------------\u001b[0m\n"
+          ],
+          "errorDetails": {
+            "actions": [
+              {
+                "action": "open_url",
+                "actionText": "Open Examples",
+                "url": "/notebooks/snippets/importing_libraries.ipynb"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "E-70GpgoZoPJ"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
